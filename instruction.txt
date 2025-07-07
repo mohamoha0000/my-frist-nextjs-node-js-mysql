@@ -1,0 +1,2 @@
+backend  : 
+npm install express cors dotenv pg bcrypt jsonwebtoken express-validator morgan
