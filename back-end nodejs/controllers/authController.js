@@ -20,7 +20,6 @@ const createToken = (id) => {
 
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
     try {
         const result = await pool.query(
             "SELECT id, email, password, name FROM users WHERE email = $1",
