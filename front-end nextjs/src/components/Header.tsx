@@ -25,9 +25,9 @@ export default function Header() {
         Projects
       </h1>
       <ul className="flex space-x-6 text-white font-medium uppercase text-sm">
-        {['home', 'home', 'contact'].map((section) => (
+        {['home', 'home', 'contact'].map((section,index) => (
           <li
-            key={section}
+            key={index}
             className="hover:text-gray-100 transition-colors cursor-pointer"
             onClick={() => handleClick(section)}
           >
