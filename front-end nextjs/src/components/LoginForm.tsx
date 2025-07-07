@@ -15,36 +15,36 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Login</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+    <div className="max-w-md mx-auto mt-12 p-6 border border-gray-300 rounded-lg shadow-md">
+      <h2 className="text-center text-2xl mb-5">Login</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <div>
-          <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Email:</label>
+          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px' }}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
         <div>
-          <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>Password:</label>
+          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password:</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px' }}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Login</button>
+        <button type="submit" className="bg-amber-300 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
       </form>
-      <p style={{ textAlign: 'center', marginTop: '20px' }}>
+      <p className="text-center mt-5 text-gray-600">
            {"Don't have an account? "}
-        <Link href="/register" style={{ color: '#007bff', textDecoration: 'none' }}>
+        <Link href="/register" className="text-blue-500 hover:text-blue-800">
           Register here
         </Link>
       </p>
