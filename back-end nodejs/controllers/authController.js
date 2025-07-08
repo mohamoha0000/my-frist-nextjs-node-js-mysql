@@ -4,12 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { pool } from "../db.js"
-async function getUsers() {
-    const { rows } = await pool.query("SELECT * FROM users");
-    // console.log(rows)
-    return rows;
-}
-getUsers()
 
 const maxAge = 3 * 24 * 60 * 60;
 
@@ -27,23 +21,23 @@ export const loginUser = async (req, res) => {
         );
 
         if (result.rows.length === 0) {
-            return res.status(400).json({ message: "This email is not registered" });
+            return res.status(400).json({ message: "incorrect email or password" });
         }
 
         const user = result.rows[0];
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'incorrect password' });
+            return res.status(400).json({ message: 'incorrect email or password' });
         }
 
-        // const token = createToken(user._id);
-        // res.cookie('jwt', token, {
-        //     httpOnly: true,
-        //     secure: false,
-        //     sameSite: "Lax",
-        //     maxAge: maxAge * 1000
-        // });
+        const token = createToken(user._id);
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "Lax",
+            maxAge: maxAge * 1000
+        });
 
         res.status(200).json({
             userId: user.id,
@@ -77,14 +71,6 @@ export const registerUser = async (req, res) => {
         );
         const insertedUser = newUser.rows[0];
         console.log(insertedUser)
-
-        // const token = createToken(newUser._id);
-        // res.cookie('jwt', token, {
-        //     httpOnly: true,
-        //     secure: false,
-        //     sameSite: "Lax",
-        //     maxAge: maxAge * 1000,
-        // });++
 
         res.status(200).json({
             userId: insertedUser.id,
