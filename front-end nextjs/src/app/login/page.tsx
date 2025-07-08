@@ -73,7 +73,12 @@ const LoginPage: React.FC = () => {
               required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             />
-            {TheError && <span className="text-red-500"> {TheError}</span>}
+            {TheError && (
+              <span className="text-red-500 flex items-center justify-center text-sm">
+                {" "}
+                {TheError}
+              </span>
+            )}
           </div>
           <button
             type="submit"

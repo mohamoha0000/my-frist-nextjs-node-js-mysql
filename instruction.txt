@@ -1,2 +1,13 @@
 backend  : 
 npm install express cors dotenv pg bcrypt jsonwebtoken express-validator morgan
+
+docker  : 
+
+backend : 
+docker build -t back_end_nextjs .
+docker run -p  6000:5000 front-end-nextjs
+
+frontend :
+docker build -t front_end_nextjs .
+docker run -p 3000:3000 front-end-nextjs
+
