@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
       }
       setTheError("");
       router.push("/");
-    } catch (error) {
+    } catch (error:any) {
       setTheError(error.response.data.message);
     }
   };

@@ -1,21 +1,34 @@
 "use client";
-import Link from 'next/link';
-import React, { useState } from 'react';
-import Header from '../../components/Header';
+import Header from "../../components/Header";
+import axios from "axios";
+
+import Link from "next/link";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const router = useRouter();
+  const [TheError, setTheError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
-      return;
+    try {
+      const res = await axios.post("http://localhost:5000/user/register", {
+        email,
+        password,
+      });
+      if (res) {
+        console.log(res.data);
+      } else {
+        console.log("No response received");
+      }
+      setTheError("");
+      router.push("/");
+    } catch (error:any) {
+      setTheError(error.response.data.message);
     }
-    // Handle registration logic here
-    console.log('Register submitted:', { email, password });
-    alert('Registration functionality not implemented yet.');
   };
   return (
     <div>
