@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
       }
       setTheError("");
       router.push("/");
-    } catch (error) {
+    } catch (error:any) {
       setTheError(error.response.data.message);
     }
   };
