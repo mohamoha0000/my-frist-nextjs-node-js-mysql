@@ -31,7 +31,7 @@ export const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'incorrect email or password' });
         }
 
-        const token = createToken(user._id);
+        const token = createToken(user.id);
         res.cookie('jwt', token, {
             httpOnly: true,
             secure: false,

@@ -5,7 +5,6 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Span } from "next/dist/trace";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -16,10 +15,16 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/user/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:5000/user/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       if (res) {
         console.log(res.data);
       } else {
