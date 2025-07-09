@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import Header from "../../components/Header";
 import axios from "axios";
@@ -5,7 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/user/login",
+        `${apiUrl}/user/login`,
         {
           email,
           password,
@@ -32,7 +34,7 @@ const LoginPage: React.FC = () => {
       }
       setTheError("");
       router.push("/");
-    } catch (error:any) {
+    } catch (error: any) {
       setTheError(error.response.data.message);
     }
   };

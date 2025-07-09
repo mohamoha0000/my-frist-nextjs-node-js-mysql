@@ -1,13 +1,23 @@
 backend  : 
 npm install express cors dotenv pg bcrypt jsonwebtoken express-validator morgan
 
-docker  : 
+docker =>
 
-backend : 
-docker build -t back_end_nextjs .
-docker run -p  6000:5000 front-end-nextjs
+docker network create myapp-network
+
+
+backend :
+
+docker build -t back_end_nodejs .
+docker run -d --name backend --network myapp-network -p 5000:5000 back_end_nodejs
 
 frontend :
-docker build -t front_end_nextjs .
-docker run -p 3000:3000 front-end-nextjs
 
+docker build -t front_end_nextjs .
+docker run -d --name frontend --network myapp-network -e NEXT_PUBLIC_BACKEND_URL=http://backend:5000 -p 3000:3000 front_end_nextjs
+
+
+
+tu the the both :
+
+docker-compose up --build
