@@ -11,7 +11,7 @@ import cors from "cors"
 const app = express();
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: `http://localhost:${process.env.FRONT_PORT}`,
     credentials: true,
 }));
 app.use(express.json());
